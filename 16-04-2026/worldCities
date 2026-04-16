@@ -1,0 +1,79 @@
+#include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iostream>
+using namespace std;
+class city{
+    long population;
+    string country;
+    string cityName;
+    int id;
+    double lat;
+    double lng;
+    string iso2;
+    string iso3;
+    public:
+    city(int id,string country,double lat,double lng,string cityName,string iso2,string iso3,long population=0){
+        this->country=country;
+        this->cityName=cityName;
+        this->population=population;
+        this->lat=lat;
+        this->lng=lng;
+        this->iso2=iso2;
+        this->iso3=iso3;
+        this->id=id;
+    }
+    void display(){
+        cout<<"id:"<<id<<"lat is:"<<lat<<"city name is:"<<cityName<<"|| population is:"<<population<<endl;
+    }
+    long getpop(){
+        return population;
+    }
+    static void loadFromFile(string filename, vector<city>& cities);
+   
+};
+
+void city::loadFromFile(string filename, vector<city>& cities) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Could not open the file!" << endl;
+        return;
+    }
+    string line;
+    getline(file, line); 
+    
+        string temp=" ";
+        int id;
+        string country, cityName, iso2, iso3;
+        double lat, lng;
+        long population;
+    while (getline(file, line)) {
+        stringstream ss(line);
+        
+            getline(ss, temp, ','); id = stoi(temp);
+            getline(ss, country, ',');
+            getline(ss, temp, ','); lat = stod(temp);
+            getline(ss, temp, ','); lng = stod(temp);
+            getline(ss, cityName, ','); 
+            getline(ss, iso2, ',');
+            getline(ss, iso3, ',');
+            getline(ss, temp, ','); population = stol(temp); 
+
+            cities.emplace_back(id, country, lat, lng, cityName, iso2, iso3, population);
+
+    }
+}
+
+
+int main() {
+
+vector<city> worldCities;
+    city::loadFromFile("worldcities.csv", worldCities);
+    for(int i = 0; i < worldCities.size(); i++) {
+        if (worldCities[i].getpop() < 3716929) {
+                worldCities[i].display();
+        }
+    }
+    return 0;
+}
