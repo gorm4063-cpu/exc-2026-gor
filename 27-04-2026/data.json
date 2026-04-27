@@ -1,0 +1,27 @@
+
+[
+  {
+    "fullName": "John Smith",
+    "points": 20,
+    "child": {
+      "fullName": "Michael Brown",
+      "points": 25,
+      "child": {
+        "fullName": "David Wilson",
+        "points": 14
+      }
+    }
+  },
+  {
+    "fullName": "Emma Johnson",
+    "points": 30
+  },
+  {
+    "fullName": "Olivia Davis",
+    "points": 22,
+    "child": {
+      "fullName": "James Miller",
+      "points": 18
+    }
+  }
+]
