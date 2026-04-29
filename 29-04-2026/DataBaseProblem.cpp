@@ -89,11 +89,11 @@ int main()
                 {
                     if (update1.getLastUpdate() > update2.getLastUpdate())
                     {
-                        update2.getLastUpdate = update1.getLastUpdate;
+                        update2.getLastUpdate() = update1.getLastUpdate();
                     }
                     else if (update1.getLastUpdate() < update2.getLastUpdate())
                     {
-                        update1.getLastUpdate = update2.getLastUpdate;
+                        update1.getLastUpdate() = update2.getLastUpdate();
                     }
                 }
             }
